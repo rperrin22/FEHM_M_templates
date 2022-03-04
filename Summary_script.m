@@ -187,7 +187,7 @@ fclose(fid);
 ipres()
 
 %% Build subdirectory for coupled run
-mkfehmdir(coupled_run_prefix);
+mkfehmdir(coupled_run_prefix,coupled_run_prefix);
 cd(coupled_run_prefix);
 system(sprintf('cp %s_material.zone %s.zone',coupled_run_prefix));
 
@@ -202,4 +202,5 @@ writeDatFile_coup(coupled_run_prefix,sim_length_coupled);
 
 %% Perform the coupled run
 system('cp /home/rperrin/Code_library/FEHM/xfehm_v3.4.0 xfehm_v3.4.0');
-system(sprintf('./xfehm_v3.4.0 %s.files',couple_run_prefix))
+system(sprintf('cp %s_material.zone %s.zone',coupled_run_prefix,coupled_run_prefix));
+system(sprintf('./xfehm_v3.4.0 %s.files',coupled_run_prefix))
